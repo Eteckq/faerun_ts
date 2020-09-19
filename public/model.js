@@ -1,6 +1,6 @@
 var model = {};
 
-model.socket = io("http://localhost:3000");
+model.socket = io("https://faerun.herokuapp.com/");
 
 model.bindAskPseudo = (handler) => {
   model.socket.on("askPseudo", (socket) => {
