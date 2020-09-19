@@ -1,0 +1,232 @@
+/* CONNECTION */
+#userInfos {
+  width: 350px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+}
+
+.alignItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#pseudoInput {
+  height: 40px;
+}
+
+input[type="color"] {
+  /* -webkit-appearance: none; */
+  border: none;
+  width: 45px;
+  height: 45px;
+  background-color: transparent;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 100%;
+}
+
+#playBtn {
+  width: 100%;
+}
+
+.hide {
+  transition: all 0.3s;
+  transform: scale(0);
+}
+
+/* PLAYERS */
+
+#players {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  margin: auto;
+  width: 300px;
+}
+
+#playersContent {
+  padding: 10px;
+}
+
+#playersContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* GAME */
+
+#winnerSlot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 200px;
+  font-size: 75px;
+  text-align: center;
+  text-transform: uppercase;
+
+  transition: all 0.8s;
+  transform: scale(0);
+}
+
+#winnerSlot.show {
+  transform: scale(1);
+}
+
+#game {
+  display: none;
+}
+
+#slots {
+  display: flex;
+  justify-content: space-around;
+}
+
+#slots .slot {
+  height: 200px;
+  width: 250px;
+  background-color: rgb(255, 213, 158);
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.warriorCardInfo {
+  width: 200px;
+}
+
+.cardTitle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.warrior {
+  width: 20px;
+  position: relative;
+  margin: 10px;
+
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.warriorCircle{
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+}
+
+.warriorHealth {
+  width: 100%;
+  height: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9px;
+}
+
+.iconWarrior {
+  width: 20px;
+  height: 20px;
+}
+
+.iconGuerrier {
+  background-color: rgb(255, 35, 35);
+}
+
+.iconNain {
+  background-color: rgb(255, 255, 56);
+}
+
+.iconChefNain {
+  background-color: rgb(255, 204, 35);
+}
+
+.iconElfe {
+  background-color: rgb(80, 255, 255);
+}
+
+.iconChefElfe {
+  background-color: rgb(18, 22, 253);
+}
+
+.warrior.right {
+  align-self: flex-end;
+}
+
+.warrior.left {
+  align-self: flex-start;
+}
+
+/* CASTLE */
+
+#castles {
+  display: flex;
+  justify-content: space-between;
+}
+
+.castle {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+
+  background-image: url("images/castle.png");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
+
+#trainingZone {
+  padding: 20px;
+}
+
+.queueHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+progress::-webkit-progress-bar {
+  background: #eee;
+  border-radius: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+}
+
+#queue {
+  width: 150px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+#queueLenght {
+  width: 50%;
+}
+
+#waitingForPlayerQueue {
+  text-align: center;
+}
