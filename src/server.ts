@@ -1,8 +1,7 @@
 import * as express from "express";
 import SocketManager from "./socket/SocketManager";
-
+const port = process.env.PORT || 3000
 const app = express();
-app.set("port", process.env.PORT || 3000);
 
 let http = require("http").Server(app);
 
@@ -15,6 +14,6 @@ app.get('/', function(req, res){
   res.sendFile('index.html');
 }); 
 
-const server = http.listen(3000, function() {
-  console.log("listening on *:3000");
+const server = http.listen(port, function() {
+  console.log("listening on *:" + port);
 });
