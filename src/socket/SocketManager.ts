@@ -24,7 +24,7 @@ export default class SocketManager {
   }
 
   private createGame() {
-    this.game = new Game(5)
+    this.game = new Game(7)
 
     this.game.eventEmitter.on('nextTurn', this.handleNextTurnEvent)
     this.game.eventEmitter.on('startGame', this.handleStartGameEvent)

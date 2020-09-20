@@ -4,11 +4,9 @@ import Guerrier from "./Guerrier";
 
 
 export default class Nain extends Guerrier {
-
+    type = "Nain"
     constructor() {
         super()
-
-        this.type = "Nain"
     }
 
     protected getResistance(): number{
@@ -16,7 +14,7 @@ export default class Nain extends Guerrier {
     }
 
     public getCost(): number {
-        return super.getCost() + 1
+        return 1
     }
 
 }

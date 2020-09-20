@@ -51,9 +51,6 @@ export default class UserSocket {
         let warrior: Guerrier
 
         switch (type) {
-            case 'Guerrier':
-                warrior = new Guerrier()
-                break;
             case 'Elfe':
                 warrior = new Elfe()
                 break;
@@ -87,11 +84,10 @@ export default class UserSocket {
 
     public sendAvailibleWarriors(){
         let warriors = [
-            new Guerrier().getStats(),
-            new Elfe().getStats(),
-            new ChefElfe().getStats(),
             new Nain().getStats(),
-            new ChefNain().getStats()
+            new Elfe().getStats(),
+            new ChefNain().getStats(),
+            new ChefElfe().getStats(),
         ]
         this.client.emit("availibleWarriors", warriors)
     }

@@ -3,11 +3,11 @@ import DamageableEntity from "../DamageableEntity";
 import Utils from "../Utils";
 
 
-export default class Guerrier implements DamageableEntity{
+export default abstract class Guerrier implements DamageableEntity{
     public static STRENGTH = 10;
     public static BASE_HEALTH = 100;
 
-    public type: string = "Guerrier"
+    public abstract type: string
 
     private health: number;
     private castle: Castle | null

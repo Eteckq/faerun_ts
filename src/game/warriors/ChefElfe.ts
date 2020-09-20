@@ -2,10 +2,9 @@ import Elfe from "./Elfe";
 
 
 export default class ChefElfe extends Elfe {
-
+    type = "ChefElfe"
     constructor() {
         super()
-        this.type = "ChefElfe"
     }
 
     protected getStrength(): number{
@@ -13,6 +12,6 @@ export default class ChefElfe extends Elfe {
     }
     
     public getCost(): number {
-        return super.getCost() + 2
+        return 4
     }
 }

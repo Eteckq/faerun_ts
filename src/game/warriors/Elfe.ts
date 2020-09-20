@@ -4,11 +4,10 @@ import Guerrier from "./Guerrier";
 
 
 export default class Elfe extends Guerrier {
+    type: string  = "Elfe";
 
     constructor() {
         super()
-
-        this.type = "Elfe"
     }
 
     protected getStrength(): number{
@@ -16,6 +15,6 @@ export default class Elfe extends Guerrier {
     }
     
     public getCost(): number {
-        return super.getCost() + 1
+        return 2
     }
 }

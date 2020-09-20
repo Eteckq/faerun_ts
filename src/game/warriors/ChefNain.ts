@@ -3,11 +3,10 @@ import Nain from "./Nain";
 
 
 export default class ChefNain extends Nain {
-
+    type = "ChefNain"
     constructor() {
         super()
 
-        this.type = "ChefNain"
     }
 
     protected getResistance(): number{
@@ -15,7 +14,7 @@ export default class ChefNain extends Nain {
     }
 
     public getCost(): number {
-        return super.getCost() + 1
+        return 3
     }
 
 }

@@ -1,4 +1,3 @@
-import SocketManager from "../socket/SocketManager";
 import Castle from "./Castle";
 import Player from "./Player";
 import Slot from "./Slot";

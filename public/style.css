@@ -116,12 +116,15 @@ input[type="color"]::-webkit-color-swatch {
 #slots {
   display: flex;
   justify-content: space-between;
+  border: 1px solid;
 }
 
 #slots .slot {
+  border: 1px #000;
+  border-style: none dashed;
   height: 200px;
-  width: 250px;
-  background-color: rgb(255, 213, 158);
+  width: 100%;
+  background-color: rgb(241, 255, 197);
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-end;
@@ -129,7 +132,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .warriorCardInfo {
-  width: 200px;
+  max-width: 220px;
 }
 
 .cardTitle {

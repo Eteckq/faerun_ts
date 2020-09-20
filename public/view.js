@@ -17,8 +17,8 @@ view.setTrainCards = (warriors) => {
 
 view.addTrainCard = (warrior) => {
   $("#trainCards").append(`
-  <div>
-  <div class="uk-card uk-card-default">
+  <div class='warriorCardInfo'>
+  <div class="uk-card uk-card-default ">
       <div class="uk-card-header">
         <div class="cardTitle">
           <div>${warrior.name}</div>
