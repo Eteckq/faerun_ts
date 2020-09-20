@@ -65,8 +65,8 @@ export default abstract class Guerrier implements DamageableEntity{
     public getStats(){
         return {
             name: this.type,
-            strength: this.getStrength(),
-            resistance: (1 -this.getResistance()) * 100,
+            strength: Math.floor(this.getStrength()),
+            resistance: Math.floor((1 -this.getResistance()) * 100),
             cost: this.getCost()
         }
     }

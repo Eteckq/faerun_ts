@@ -10,7 +10,11 @@ export default class Nain extends Guerrier {
     }
 
     protected getResistance(): number{
-        return super.getResistance()*0.5
+        return super.getResistance()*0.75
+    }
+
+    protected getStrength(): number{
+        return super.getStrength() * 0.75
     }
 
     public getCost(): number {

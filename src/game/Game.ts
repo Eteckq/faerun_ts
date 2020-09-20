@@ -15,6 +15,8 @@ export default class Game {
 
     public eventEmitter = new events.EventEmitter();
 
+    private state: "WAIT" | "PRESTART" | "STARTED" | "FINISH" = "WAIT"
+
     constructor(nbrOfSlots: number = 5) {
         for (let i = 0; i < nbrOfSlots; i++) {
             this.slots.push(new Slot(i));
@@ -44,6 +46,7 @@ export default class Game {
     }
 
     public startTraining() {
+        this.state = "PRESTART"
         this.eventEmitter.emit('startTraining');
     }
 
@@ -52,7 +55,7 @@ export default class Game {
         warrior.setCastle(castle);
 
         for (const player of this.players) {
-            if (player.getCastle().getTrainingWarriors().length < 5) {
+            if (player.getCastle().getTrainingWarriors().length < 3) {
                 return;
             }
         }
@@ -61,11 +64,13 @@ export default class Game {
     }
 
     public endGame(){
+        this.state = "FINISH"
         clearInterval(this.interval)
         this.eventEmitter.emit('endGame');
     }
 
     public winGame(winner: Player){
+        this.state = "FINISH"
         clearInterval(this.interval)
         this.eventEmitter.emit('winGame', winner.getPseudo());
 
@@ -75,7 +80,10 @@ export default class Game {
     }
 
     public startGame() {
-        
+        if(this.state === "STARTED"){
+            return
+        }
+        this.state = "STARTED"
         this.eventEmitter.emit('startGame');
         this.interval = setInterval(() => {
             this.nextTurn();

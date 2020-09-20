@@ -26,10 +26,9 @@ view.addTrainCard = (warrior) => {
         </div>
       </div>
       <div class="uk-card-body">
-        Force: ${warrior.strength}
-        Resistance: ${warrior.resistance}%
-
-        Cout: ${warrior.cost}
+        <p>Force: ${warrior.strength}</p>
+        <p>Resistance: ${warrior.resistance}%</p>
+        <p>Cout: ${warrior.cost}</p>
       </div>
       <div class="uk-card-footer" style="padding: 0">
         <a style="width: 100%; height: 100%" class="uk-button uk-button-default" onclick="controller.train('${warrior.name}')">Entrainer</a>
