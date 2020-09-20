@@ -154,10 +154,11 @@ view.setCastles = (castles) => {
   for (const castle of castles) {
     $("#castles").append(`
       <div class='castle' style="background-color: ${castle.color};">
-        Ressources: ${castle.ressources}
+        
         <progress class="castleHealth" value="${castle.health}" max="1000"></progress>
       </div>
   `);
+  //Ressources: ${castle.ressources}
   }
 };
 

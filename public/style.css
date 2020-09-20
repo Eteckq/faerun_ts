@@ -15,6 +15,8 @@
   align-items: center;
 }
 
+
+
 #pseudoInput {
   height: 40px;
 }
@@ -98,9 +100,22 @@ input[type="color"]::-webkit-color-swatch {
   display: none;
 }
 
+#labelRessources {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#ressources {
+  background-color: rgb(6, 190, 0);
+  border-radius: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
 #slots {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 #slots .slot {

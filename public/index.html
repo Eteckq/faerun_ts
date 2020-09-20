@@ -45,12 +45,19 @@
         <div id="queue"></div>
       <progress id="queueLenght" class="uk-progress" value="0" max="5"></progress>
       </div>
-      <div>Ressource: <span id="ressources">3</span></div>
+      <div id="labelRessources">Ressources: <span id="ressources">3</span></div>
 
 
       <div id="trainCards" class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid> </div>
       <div id="waitingForPlayerQueue">La partie commencera dès que les deux joueurs auront rempli leur file d'attente</div>
-      
+      <div id="regles">
+        Règles
+        <ul>
+          <li>En cliquant sur "Entrainer", vous pouvez envoyer un guerrier dans la file d'attente</li>
+          <li>À chaque tour (toutes les 2 secondes), les guerriers sortent de la file d'attente pour aller sur le champs de bataille si le chateau à assez de ressources</li>
+          <li>Le but du jeu est de détruire le chateau adverse</li>
+        </ul>
+      </div>
     </div>
   </div>
 
