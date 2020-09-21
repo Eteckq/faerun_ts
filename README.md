@@ -14,11 +14,25 @@ Ce projet contient les fonctionnalités principales attendues par l'énoncé, av
  - Un mode multijoueur
  - Des fonctionnalités de jeu supplémentaires (coups critiques, destruction de chateau, l'entrainement de guerriers pendant la partie)
 
+Les troupes ont été équilibré selon mon système de combat
+
+Système de combat de l'énoncé:
+
+Les guerriers sont sous forme de file d'attente sur les cases (uen file d'attente par équipe), et les combats se font en 1v1 (le 1er de la file d'attente attaque le 1er de l'autre file d'attente).
+
+Système modifié:
+
+Tous les guerriers présents sur une case attaquent UN guerrier ennemi aléatoire.
+
+L'ordre des attaques est aléatoire
+
+Cela permet d'avoir des tours plus rapides, et une stratégie moins aléatoire.
+
 ## Déroulement d'une partie
 
  - Les deux joueurs choisissent un pseudo ainsi qu'une couleur
- - Avant que la partie débute, les joueurs choisissent 5 guerriers à mettre en file d'attente
- - Une fois les files d'attentes pleines, le 1er tour se lance
+ - Avant que la partie débute, les joueurs choisissent au moins 3 guerriers à mettre en file d'attente
+ - Une fois les guerriers choisi, le 1er tour se lance
  - À chaque tour, les guerriers en file d'attente sont envoyés sur le terrain si le chateau possède le nombre de ressources necessaires.
  
  Les tours se passent automatiquement, toutes les 2 secondes.
@@ -28,6 +42,8 @@ Ce projet contient les fonctionnalités principales attendues par l'énoncé, av
  Pour gagner, un joueur doit détruire le chateau adverse
 
 ## Installation
+
+Une version est disponible sur ce site : https://faerun.herokuapp.com/
 
 Le projet utilise NodeJS, il faut donc avoir npm d'installé
 

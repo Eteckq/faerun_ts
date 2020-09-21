@@ -21,7 +21,7 @@ export default class UserSocket {
 
     init() {
         this.client.emit("askPseudo");
-        this.client.on("chosePseudo", this.chosePseudo);
+        this.client.once("chosePseudo", this.chosePseudo);
     }
 
     chosePseudo = (data: any) => {
@@ -30,8 +30,6 @@ export default class UserSocket {
         this.sendAvailibleWarriors()
         this.client.on("addWarriorToQueue", this.addWarriorToQueue)
         this.client.on("disconnect", this.playerDisconnect)
-        
-        this.client.removeListener("chosePseudo", this.chosePseudo)
     }
 
     playerDisconnect = () => {

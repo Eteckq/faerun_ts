@@ -11,6 +11,7 @@ export default class Player {
 
     private pseudo: string
 
+    // TODO - ERREUR DE CONCEPTION - UserSocket ne devrait pas être connu du core du jeu.
     constructor(game: Game,pseudo: string, color: string, userSocket: UserSocket){
         this.game = game 
         this.userSocket = userSocket
