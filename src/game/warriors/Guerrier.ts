@@ -47,7 +47,7 @@ export default abstract class Guerrier implements DamageableEntity{
     }
 
     public dealDamages(damages: number){
-        this.health -= Math.floor(damages * this.getResistance())
+        this.health -= Math.floor(damages * 1-this.getResistance())
     }
 
     protected getStrength(): number {
@@ -55,7 +55,7 @@ export default abstract class Guerrier implements DamageableEntity{
     }
 
     protected getResistance(): number {
-        return 1
+        return 0
     }
 
     public getHealth(){
@@ -66,7 +66,7 @@ export default abstract class Guerrier implements DamageableEntity{
         return {
             name: this.type,
             strength: Math.floor(this.getStrength()),
-            resistance: Math.floor((1 -this.getResistance()) * 100),
+            resistance: Math.floor((this.getResistance()) * 100),
             cost: this.getCost()
         }
     }

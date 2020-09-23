@@ -191,6 +191,10 @@ input[type="color"]::-webkit-color-swatch {
   background-color: rgb(18, 22, 253);
 }
 
+.iconYoyo {
+  background-color: rgb(49, 0, 39);
+}
+
 .warrior.right {
   align-self: flex-end;
 }

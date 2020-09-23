@@ -167,6 +167,9 @@ export default class Game {
 
     // Pour les combats, chaques guerriers attaque un guerrier adverse au hasard sur la case
     private fight() {
+        this.attackCastleIfLeftSideIsInLastSlot()
+        this.attackCastleIfRightSideIsInLastSlot()
+
         for (const slot of this.slots) {
             if (slot.hasBothSideWarriors()) {
                 // Chaque équipe à une chance sur deux d'attaquer en premier
@@ -181,9 +184,6 @@ export default class Game {
                 slot.removeDeadWarriors()
             }
         }
-
-        this.attackCastleIfLeftSideIsInLastSlot()
-        this.attackCastleIfRightSideIsInLastSlot()
     }
 
     public getCastles(){
@@ -228,6 +228,9 @@ export default class Game {
         for (const warrior of slot.getRightSideWarriors()) {
             if(!warrior.isDead()){
                 warrior.attack(slot.getRandomLeftWarrior())
+                if(slot.getRandomLeftWarrior() == null){
+                    console.log("ATTAQUER LE CHATEAU");
+                }
             }
         }
     }
@@ -236,6 +239,9 @@ export default class Game {
         for (const warrior of slot.getLeftSideWarriors()) {
             if(!warrior.isDead()){
                 warrior.attack(slot.getRandomRightWarrior())
+                if(slot.getRandomRightWarrior() == null){
+                    console.log("ATTAQUER LE CHATEAU");
+                }
             }
         }
     }

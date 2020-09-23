@@ -3,22 +3,22 @@
 import Guerrier from "./Guerrier";
 
 
-export default class Nain extends Guerrier {
-    type = "Nain"
+export default class Yoyo extends Guerrier {
+    type = "Yoyo"
     constructor() {
         super()
     }
 
     protected getResistance(): number{
-        return super.getResistance() + 0.25
+        return 0.50
     }
 
     protected getStrength(): number{
-        return 2
+        return 100
     }
 
     public getCost(): number {
-        return 1
+        return 15
     }
 
 }

@@ -8,7 +8,7 @@ export default class ChefElfe extends Elfe {
     }
 
     protected getStrength(): number{
-        return super.getStrength() * 4
+        return super.getStrength() * 2.2
     }
     
     public getCost(): number {

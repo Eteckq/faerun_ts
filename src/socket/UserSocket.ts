@@ -6,6 +6,7 @@ import Game from "../game/Game";
 import Player from "../game/Player";
 import ChefElfe from "../game/warriors/ChefElfe";
 import ChefNain from "../game/warriors/ChefNain";
+import Yoyo from "../game/warriors/Yoyo";
 
 export default class UserSocket {
     private client: Socket;
@@ -61,6 +62,9 @@ export default class UserSocket {
             case 'ChefNain':
                 warrior = new ChefNain()
                 break;
+                case 'Yoyo':
+                    warrior = new Yoyo()
+                    break;
             default:
                 break;
         }
@@ -83,9 +87,10 @@ export default class UserSocket {
     public sendAvailibleWarriors(){
         let warriors = [
             new Nain().getStats(),
-            new ChefNain().getStats(),
             new Elfe().getStats(),
+            new ChefNain().getStats(),
             new ChefElfe().getStats(),
+            new Yoyo().getStats(),
         ]
         this.client.emit("availibleWarriors", warriors)
     }

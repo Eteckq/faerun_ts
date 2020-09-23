@@ -11,7 +11,7 @@ export default class Elfe extends Guerrier {
     }
 
     protected getStrength(): number{
-        return super.getStrength() * 2.2
+        return super.getStrength() + 5
     }
     
     public getCost(): number {
