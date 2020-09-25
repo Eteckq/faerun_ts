@@ -58,6 +58,7 @@ export default class Castle implements DamageableEntity{
         return this.ressources
     }
 
+    // Entraine le plus de guerrier possible
     public trainWarrior(): Guerrier | null{
         let warriors = this.getTrainingWarriors()
         //Shuffle array

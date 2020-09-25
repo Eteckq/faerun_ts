@@ -30,7 +30,7 @@ export default abstract class Guerrier implements DamageableEntity{
     }
 
     public attack(target: DamageableEntity) {
-        let attackCoeff = Utils.DE()
+        let attackCoeff = Utils.DE(10)
         
 
         if(attackCoeff == 10){

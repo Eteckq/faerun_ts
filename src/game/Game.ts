@@ -1,3 +1,4 @@
+import { EventEmitter } from "events";
 import Castle from "./Castle";
 import Player from "./Player";
 import Slot from "./Slot";
@@ -11,9 +12,9 @@ export default class Game {
 
     private slots: Slot[] = [];
 
-    private interval: any;
+    private interval: NodeJS.Timeout;
 
-    public eventEmitter = new events.EventEmitter();
+    public eventEmitter = new EventEmitter();
 
     private state: "WAIT" | "PRESTART" | "STARTED" | "FINISH" = "WAIT"
 
@@ -23,9 +24,25 @@ export default class Game {
         }
     }
 
+    //#region GETTERS
+
     public getPlayers(){
         return this.players
     }
+
+    public getSlots() {
+        return this.slots;
+    }
+
+    public getCastles(){
+        let castles = []
+        for (const player of this.players) {
+            castles.push(player.getCastle())
+        }
+        return castles
+    }
+
+    //#endregion
 
     public addPlayer(player: Player) {
         if (this.players.length < 2) {
@@ -90,6 +107,22 @@ export default class Game {
         }, 2000);
     }
 
+    public nextTurn() {
+        //Move
+        this.moveWarriors();
+
+        //Fight
+        this.fight();
+
+        //Send new warriors
+        this.tryToSummonWarriors();
+
+        //Give ressources
+        this.addRessourcesToCastles(1);
+
+        this.eventEmitter.emit('nextTurn');
+    }
+
     private tryToSummonWarriors() {
         for (const player of this.players) {
             let castle = player.getCastle();
@@ -105,22 +138,6 @@ export default class Game {
 
     private summonWarrior(warrior: Guerrier, slot: Slot) {
         slot.addWarrior(warrior);
-    }
-
-    public nextTurn() {
-        //Move
-        this.moveWarriors();
-
-        //Fight
-        this.fight();
-
-        //Send new warriors
-        this.tryToSummonWarriors();
-
-        //Give ressources
-        this.addRessourcesToCastles(1);
-
-        this.eventEmitter.emit('nextTurn');
     }
 
     private moveLeftWarriors(){
@@ -186,14 +203,6 @@ export default class Game {
         }
     }
 
-    public getCastles(){
-        let castles = []
-        for (const player of this.players) {
-            castles.push(player.getCastle())
-        }
-        return castles
-    }
-
     private attackCastleIfLeftSideIsInLastSlot(){
         let slot = this.slots[this.slots.length-1]
 
@@ -253,7 +262,4 @@ export default class Game {
         }
     }
 
-    public getSlots() {
-        return this.slots;
-    }
 }

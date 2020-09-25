@@ -90,7 +90,7 @@ export default class Slot {
     }
 
     public getSortedWarriors(){
-      return [...this.getLeftSideWarriors().reverse(), ...this.getRightSideWarriors()]
+      return [...this.getLeftSideWarriors(), ...this.getRightSideWarriors()]
     }
 
     public removeDeadWarriors(){

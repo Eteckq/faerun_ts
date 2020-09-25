@@ -1,12 +1,12 @@
 import * as express from "express";
-import SocketManager from "./socket/SocketManager";
+import GameSocket from "./socket/GameSocket";
 const port = process.env.PORT || 3000
 const app = express();
 
 let http = require("http").Server(app);
 
 
-new SocketManager(http)
+new GameSocket(http)
 
 app.use(express.static('public'));
 

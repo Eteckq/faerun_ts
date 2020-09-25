@@ -26,7 +26,7 @@ export default class UserSocket {
     }
 
     chosePseudo = (data: any) => {
-        this.player = new Player(this.game, data.pseudo, data.color, this);
+        this.player = new Player(this.game, data.pseudo, data.color);
         this.sendMessage("Salut, " + data.pseudo + " !")
         this.sendAvailibleWarriors()
         this.client.on("addWarriorToQueue", this.addWarriorToQueue)

@@ -1,7 +1,7 @@
 
 export default class Utils {
-    public static DE(): number{
-        return Math.random() * 10
+    public static DE(face: number): number{
+        return Math.random() * face
     }
   
     

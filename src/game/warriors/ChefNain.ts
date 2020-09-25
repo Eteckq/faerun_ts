@@ -10,7 +10,7 @@ export default class ChefNain extends Nain {
     }
 
     protected getResistance(): number{
-        return super.getResistance() + 0.5
+        return super.getResistance() + 0.25
     }
 
     protected getStrength(): number{
