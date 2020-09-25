@@ -189,18 +189,35 @@ export default class Game {
 
         for (const slot of this.slots) {
             if (slot.hasBothSideWarriors()) {
+
                 // Chaque équipe à une chance sur deux d'attaquer en premier
-                if(Math.round(Math.random())){
+                /* if(Math.round(Math.random())){
                     this.leftSideAttackOnSlot(slot)
                     this.rightSideAttackOnSlot(slot)
                 } else {
                     this.rightSideAttackOnSlot(slot)
                     this.leftSideAttackOnSlot(slot)
-                }
+                } */
 
-                slot.removeDeadWarriors()
+                this.attackOnSlot(slot)
             }
         }
+    }
+
+    private attackOnSlot(slot: Slot){
+        for (const warrior of slot.getSortedWarriors()) {
+            let target: Guerrier
+            if(!warrior.isDead()){
+                if(warrior.getCastle().isLeft()){
+                    target = slot.getRandomRightWarrior()
+                } else {
+                    target = slot.getRandomLeftWarrior()
+                }
+                warrior.attack(target)
+            }
+        }
+
+        slot.removeDeadWarriors()
     }
 
     private attackCastleIfLeftSideIsInLastSlot(){

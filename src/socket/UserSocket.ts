@@ -41,6 +41,7 @@ export default class UserSocket {
         if (this.game.getPlayers().length !== 2) return
 
         let castle = this.player.getCastle()
+        
 
         if (castle.getTrainingWarriors().length >= 5) {
             this.sendMessage("File d'attente pleine")

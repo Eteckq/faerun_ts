@@ -93,6 +93,10 @@ export default class Slot {
       return [...this.getLeftSideWarriors(), ...this.getRightSideWarriors()]
     }
 
+    public getShuffledWarriors(){
+      return this.warriors.sort(() => Math.random() - 0.5)
+    }
+
     public removeDeadWarriors(){
       this.warriors = this.warriors.filter(warrior => !warrior.isDead())
     }
