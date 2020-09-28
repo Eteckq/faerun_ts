@@ -233,6 +233,7 @@ export default class Game {
                 warrior.attack(target)
             }
         }
+        slot.removeDeadWarriors()
     }
 
     private attackOnSlot(slot: Slot){
