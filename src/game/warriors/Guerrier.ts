@@ -34,7 +34,7 @@ export default abstract class Guerrier implements DamageableEntity{
         
 
         if(attackCoeff == 10){
-            target.dealDamages(this.getStrength() * 10)
+            target.dealDamages(this.getStrength() * 3)
         } else {
             target.dealDamages(this.getStrength() + this.getStrength() * attackCoeff / 10)
         }
@@ -47,7 +47,7 @@ export default abstract class Guerrier implements DamageableEntity{
     }
 
     public dealDamages(damages: number){
-        this.health -= Math.floor(damages * 1-this.getResistance())
+        this.health -= (damages * 1-this.getResistance())
     }
 
     protected getStrength(): number {
