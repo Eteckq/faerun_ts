@@ -97,7 +97,8 @@ export default class UserSocket {
     }
 
     public sendRessource() {
-        this.client.emit("ressources", this.player.getCastle().getRessources())
+        if(this.player)
+            this.client.emit("ressources", this.player.getCastle().getRessources())
     }
 
     public sendMessage(message: string) {
