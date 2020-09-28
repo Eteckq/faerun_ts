@@ -82,7 +82,9 @@ view.getPseudo = () => {
   return $("#pseudoInput").val();
 };
 view.getColor = () => {
-  return $("#colorInput").val();
+  let color = $("#colorInput").val() // Should be in model
+  localStorage.setItem("color", color)
+  return color;
 };
 
 view.setQueue = (warriors) => {
@@ -193,6 +195,9 @@ function hslToHex(h, s, l) {
 }
 
 function getColor() {
+  let savedColor = localStorage.getItem("color")
+  if(savedColor) return savedColor
+  
   return hslToHex(
     360 * Math.random(),
     25 + 70 * Math.random(),
