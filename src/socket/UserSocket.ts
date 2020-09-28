@@ -106,6 +106,7 @@ export default class UserSocket {
     }
 
     public sendQueue() {
+        if(!this.player) return
         let sendableWarriors = []
         for (const warrior of this.player.getCastle().getTrainingWarriors()) {
             sendableWarriors.push({
