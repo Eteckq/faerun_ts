@@ -10,7 +10,7 @@ export default class Yoyo extends Guerrier {
     }
 
     public getResistance(): number{
-        return 0.80
+        return 0.90
     }
 
     protected getStrength(): number{
@@ -18,7 +18,7 @@ export default class Yoyo extends Guerrier {
     }
 
     public getCost(): number {
-        return 15
+        return 9
     }
 
 }

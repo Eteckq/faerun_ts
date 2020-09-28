@@ -123,7 +123,15 @@ export default class Slot {
     }
 
     public getSortedWarriors(){
-      return [...this.getLeftSideWarriors(), ...this.getRightSideWarriors()]
+      return [...this.getSortedLeftWarriors(), ...this.getSortedRightWarriors().reverse()]
+    }
+
+    public getSortedLeftWarriors(){
+      return this.getLeftSideWarriors().sort((a,b) => (a.getResistance() - b.getResistance()))
+    }
+
+    public getSortedRightWarriors(){
+      return this.getRightSideWarriors().sort((a,b) => (a.getResistance() - b.getResistance()))
     }
 
     public getShuffledWarriors(){
