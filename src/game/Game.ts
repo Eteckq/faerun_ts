@@ -230,10 +230,11 @@ export default class Game {
                 } else {
                     target = slot.getStrongestLeftWarrior()
                 }
-                warrior.attack(target)
+                if(target)
+                    warrior.attack(target)
+                slot.removeDeadWarriors()
             }
         }
-        slot.removeDeadWarriors()
     }
 
     private attackOnSlot(slot: Slot){
