@@ -30,6 +30,7 @@ export default abstract class Guerrier implements DamageableEntity{
     }
 
     public attack(target: DamageableEntity) {
+        // target.dealDamages(this.getStrength())
         let attackCoeff = Utils.DE(10)
         
 
@@ -47,7 +48,7 @@ export default abstract class Guerrier implements DamageableEntity{
     }
 
     public dealDamages(damages: number){
-        this.health -= (damages * 1-this.getResistance())
+        this.health -= (damages * (1-this.getResistance()))
     }
 
     protected getStrength(): number {
