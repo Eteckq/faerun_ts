@@ -250,7 +250,7 @@ export default class Game {
         }
     }
 
-    private rightSideAttackOnSlot(slot: Slot){
+    /* private rightSideAttackOnSlot(slot: Slot){
         for (const warrior of slot.getRightSideWarriors()) {
             if(!warrior.isDead()){
                 warrior.attack(slot.getRandomLeftWarrior())
@@ -270,8 +270,12 @@ export default class Game {
                 }
             }
         }
-    }
+    } */
 
+    /**
+     * Give ressources to castles
+     * @param count Number of ressources
+     */
     private addRessourcesToCastles(count: number) {
         for (const player of this.players) {
             let castle = player.getCastle();
