@@ -62,11 +62,19 @@ export default class Game {
         this.eventEmitter.emit('addPlayer');
     }
 
+    /**
+     * Start the training step
+     */
     public startTraining() {
         this.state = "PRESTART"
         this.eventEmitter.emit('startTraining');
     }
 
+    /**
+     * Add a warrior in a castle
+     * @param castle 
+     * @param warrior 
+     */
     public trainWarrior(castle: Castle, warrior: Guerrier) {
         castle.addTrainingWarrior(warrior);
         warrior.setCastle(castle);
@@ -107,6 +115,9 @@ export default class Game {
         }, 2000);
     }
 
+    /**
+     * Start next turn
+     */
     public nextTurn() {
         //Move
         this.moveWarriors();
@@ -140,6 +151,9 @@ export default class Game {
         slot.addWarrior(warrior);
     }
 
+    /**
+     * Move left warriors to the right
+     */
     private moveLeftWarriors(){
         for (let i = this.slots.length - 1; i >= 0; i--) {
             const targetSlot = this.slots[i];
@@ -154,6 +168,9 @@ export default class Game {
         }
     }
 
+    /**
+     * Move right warriors to the left
+     */
     private moveRightWarriors(){
         for (let i = 0; i < this.slots.length; i++) {
             const targetSlot = this.slots[i];
@@ -199,13 +216,27 @@ export default class Game {
                     this.leftSideAttackOnSlot(slot)
                 } */
 
-                this.attackOnSlot(slot)
+                this.attackStrongestOnSlot(slot)
+            }
+        }
+    }
+
+    private attackStrongestOnSlot(slot: Slot){
+        for (const warrior of slot.getShuffledWarriors()) {
+            let target: Guerrier
+            if(!warrior.isDead()){
+                if(warrior.getCastle().isLeft()){
+                    target = slot.getStrongestRightWarrior()
+                } else {
+                    target = slot.getStrongestLeftWarrior()
+                }
+                warrior.attack(target)
             }
         }
     }
 
     private attackOnSlot(slot: Slot){
-        for (const warrior of slot.getSortedWarriors()) {
+        for (const warrior of slot.getShuffledWarriors()) {
             let target: Guerrier
             if(!warrior.isDead()){
                 if(warrior.getCastle().isLeft()){

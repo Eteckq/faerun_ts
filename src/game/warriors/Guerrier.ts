@@ -55,7 +55,7 @@ export default abstract class Guerrier implements DamageableEntity{
         return Guerrier.STRENGTH
     }
 
-    protected getResistance(): number {
+    public getResistance(): number {
         return 0
     }
 

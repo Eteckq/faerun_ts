@@ -27,93 +27,93 @@ export default class UserSocket {
 
     chosePseudo = (data: any) => {
         this.player = new Player(this.game, data.pseudo, data.color);
-        this.sendMessage("Salut, " + data.pseudo + " !")
-        this.sendAvailibleWarriors()
-        this.client.on("addWarriorToQueue", this.addWarriorToQueue)
-        this.client.on("disconnect", this.playerDisconnect)
-    }
+        setTimeout(() => {
+            this.sendAvailibleWarriors();
+            this.client.on("addWarriorToQueue", this.addWarriorToQueue);
+            this.client.on("disconnect", this.playerDisconnect);
+        }, 300);
+    };
 
     playerDisconnect = () => {
-        this.game.endGame()
-    }
+        this.game.endGame();
+    };
 
     addWarriorToQueue = (type: string) => {
-        if (this.game.getPlayers().length !== 2) return
+        if (this.game.getPlayers().length !== 2) return;
 
-        let castle = this.player.getCastle()
-        
+        let castle = this.player.getCastle();
 
         if (castle.getTrainingWarriors().length >= 5) {
-            this.sendMessage("File d'attente pleine")
-            return
+            this.sendMessage("File d'attente pleine");
+            return;
         }
 
-        let warrior: Guerrier
+        let warrior: Guerrier;
 
         switch (type) {
-            case 'Elfe':
-                warrior = new Elfe()
+            case "Elfe":
+                warrior = new Elfe();
                 break;
-            case 'ChefElfe':
-                warrior = new ChefElfe()
+            case "ChefElfe":
+                warrior = new ChefElfe();
                 break;
-            case 'Nain':
-                warrior = new Nain()
+            case "Nain":
+                warrior = new Nain();
                 break;
-            case 'ChefNain':
-                warrior = new ChefNain()
+            case "ChefNain":
+                warrior = new ChefNain();
                 break;
-                case 'Yoyo':
-                    warrior = new Yoyo()
-                    break;
+            case "Yoyo":
+                warrior = new Yoyo();
+                break;
             default:
                 break;
         }
-        this.game.trainWarrior(castle, warrior)
-        this.sendQueue()
-    }
+        this.game.trainWarrior(castle, warrior);
+        this.sendQueue();
+    };
 
     public sendPlayers() {
-        let players: any[] = []
+        let players: any[] = [];
         for (const player of this.game.getPlayers()) {
             players.push({
                 name: player.getPseudo(),
-                color: player.getCastle().getColor()
-            })
+                color: player.getCastle().getColor(),
+            });
         }
 
-        this.client.emit("players", players)
+        this.client.emit("players", players);
     }
 
-    public sendAvailibleWarriors(){
+    public sendAvailibleWarriors() {
         let warriors = [
             new Nain().getStats(),
             new Elfe().getStats(),
             new ChefNain().getStats(),
             new ChefElfe().getStats(),
             new Yoyo().getStats(),
-        ]
-        this.client.emit("availibleWarriors", warriors)
+        ];
+        this.client.emit("availibleWarriors", warriors);
     }
 
     public sendRessource() {
-        if(this.player)
-            this.client.emit("ressources", this.player.getCastle().getRessources())
+        if (this.player)
+            this.client.emit("ressources", this.player.getCastle().getRessources());
     }
 
     public sendMessage(message: string) {
-        this.client.emit("message", message)
+        this.client.emit("message", message);
     }
 
     public sendQueue() {
-        if(!this.player) return
-        let sendableWarriors = []
+        if (!this.player) return;
+        let sendableWarriors = [];
         for (const warrior of this.player.getCastle().getTrainingWarriors()) {
             sendableWarriors.push({
-                type: warrior.type
-            })
+                type: warrior.type,
+            });
         }
-        
-        this.client.emit("queue", sendableWarriors)
+
+        this.client.emit("queue", sendableWarriors);
     }
 }

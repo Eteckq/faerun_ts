@@ -73,10 +73,43 @@ export default class Slot {
       return false
     }
 
+    public getStrongestRightWarrior(){
+      let strongestWarrior: Guerrier
+      let warriors = this.getRightSideWarriors()
+
+      strongestWarrior = warriors[0]
+
+      for (const warrior of warriors) {
+        if(warrior.getResistance() > strongestWarrior.getResistance()){
+          strongestWarrior = warrior
+        }
+      }
+
+      return strongestWarrior
+    }
+
+    public getStrongestLeftWarrior(){
+      let strongestWarrior: Guerrier
+      let warriors = this.getLeftSideWarriors()
+
+      strongestWarrior = warriors[0]
+
+      for (const warrior of warriors) {
+        if(warrior.getResistance() > strongestWarrior.getResistance()){
+          strongestWarrior = warrior
+        }
+      }
+
+      return strongestWarrior
+    }
+
     public addWarrior(warrior: Guerrier){
       this.warriors.push(warrior)
     }
 
+    /**
+     * Remove all warriors on slot, and return them
+     */
     public removeWarriors(){
       return this.warriors.splice(0, this.warriors.length)
     }

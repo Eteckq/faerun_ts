@@ -9,7 +9,7 @@ export default class Nain extends Guerrier {
         super()
     }
 
-    protected getResistance(): number{
+    public getResistance(): number{
         return super.getResistance() + 0.5
     }
 

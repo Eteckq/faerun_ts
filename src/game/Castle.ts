@@ -92,13 +92,11 @@ export default class Castle implements DamageableEntity{
     }
 
     /**
-     * Get a random warrior to train, and return it
+     * Get a warrior to train, remove it from the castle, and return it
      * Return null if we can't train any warrior
      */
     public trainWarrior(): Guerrier | null{
         let warriors = this.getTrainingWarriors()
-        //Shuffle array
-        warriors.sort(() => Math.random() - 0.5);
         
         //Find a warrior to train
         for (const index in warriors) {

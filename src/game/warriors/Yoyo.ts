@@ -9,8 +9,8 @@ export default class Yoyo extends Guerrier {
         super()
     }
 
-    protected getResistance(): number{
-        return 0.90
+    public getResistance(): number{
+        return 0.80
     }
 
     protected getStrength(): number{
