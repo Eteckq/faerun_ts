@@ -2,6 +2,7 @@ import { Server, Socket } from "socket.io";
 import Elfe from "../game/warriors/Elfe";
 import Guerrier from "../game/warriors/Guerrier";
 import Nain from "../game/warriors/Nain";
+import Francis from "../game/warriors/Francis";
 import Game from "../game/Game";
 import Player from "../game/Player";
 import ChefElfe from "../game/warriors/ChefElfe";
@@ -63,8 +64,11 @@ export default class UserSocket {
             case "ChefNain":
                 warrior = new ChefNain();
                 break;
-            case "Yoyo":
-                warrior = new Yoyo();
+                case "Yoyo":
+                    warrior = new Yoyo();
+                    break;
+            case "Francis":
+                warrior = new Francis();
                 break;
             default:
                 break;
@@ -92,6 +96,7 @@ export default class UserSocket {
             new ChefNain().getStats(),
             new ChefElfe().getStats(),
             new Yoyo().getStats(),
+            new Francis().getStats()
         ];
         this.client.emit("availibleWarriors", warriors);
     }
