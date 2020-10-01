@@ -235,7 +235,7 @@ export default class Game {
         }
     }
 
-    private attackOnSlot(slot: Slot){
+    /* private attackOnSlot(slot: Slot){
         for (const warrior of slot.getShuffledWarriors()) {
             let target: Guerrier
             if(!warrior.isDead()){
@@ -249,20 +249,22 @@ export default class Game {
         }
 
         slot.removeDeadWarriors()
-    }
+    } */
 
     private attackCastleIfLeftSideIsInLastSlot(){
         let slot = this.slots[this.slots.length-1]
+        let castle = this.players[1].getCastle()
 
-        if(!slot.hasBothSideWarriors() && slot.hasLeftSideWarriors()){
-            let castle = this.players[1].getCastle()
+        if(slot.hasLeftSideWarriors()){
             castle.attack(slot.getStrongestLeftWarrior())
             slot.removeDeadWarriors()
-            for (const warrior of slot.getWarriors()) {
-                warrior.attack(castle)
-            }
-            if(castle.isDestroyed()){
-                this.winGame(this.players[0], this.players[1])
+            if(!slot.hasBothSideWarriors()){
+                for (const warrior of slot.getWarriors()) {
+                    warrior.attack(castle)
+                }
+                if(castle.isDestroyed()){
+                    this.winGame(this.players[0], this.players[1])
+                }
             }
         }
 
@@ -271,16 +273,17 @@ export default class Game {
 
     private attackCastleIfRightSideIsInLastSlot(){
         let slot = this.slots[0]
-
-        if(!slot.hasBothSideWarriors() && slot.hasRightSideWarriors()){
-            let castle = this.players[0].getCastle()
+        let castle = this.players[0].getCastle()
+        if(slot.hasRightSideWarriors()){
             castle.attack(slot.getStrongestRightWarrior())
             slot.removeDeadWarriors()
-            for (const warrior of slot.getWarriors()) {
-                warrior.attack(castle)
-            }
-            if(castle.isDestroyed()){
-                this.winGame(this.players[1], this.players[0])
+            if(!slot.hasBothSideWarriors()){
+                for (const warrior of slot.getWarriors()) {
+                    warrior.attack(castle)
+                }
+                if(castle.isDestroyed()){
+                    this.winGame(this.players[1], this.players[0])
+                }
             }
         }
     }
