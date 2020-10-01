@@ -13,7 +13,7 @@ export default class ChefNain extends Nain {
     }
 
     protected getStrength(): number{
-        return super.getStrength() + 10
+        return super.getStrength() + 6
     }
 
     public getCost(): number {

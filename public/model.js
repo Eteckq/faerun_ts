@@ -33,6 +33,11 @@ model.bindWinGame= (handler) => {
     handler(winner);
   });
 };
+model.bindEarthquake = (handler) => {
+  model.socket.on("earthquake", (slotId) => {
+    handler(slotId)
+  })
+}
 model.bindSendCastles= (handler) => {
   model.socket.on("sendCastles", (castles) => {
     handler(castles);
@@ -65,7 +70,9 @@ model.emitUserInfos = (pseudo, color) => {
     color: color,
   });
 };
-
+model.emitClickSlot = (slotId) => {
+  model.socket.emit("clickSlot", slotId);
+}
 model.emitAddWarriorToQueue = (id) => {
   model.socket.emit("addWarriorToQueue", id);
 };

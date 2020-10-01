@@ -31,12 +31,17 @@ export default class UserSocket {
         setTimeout(() => {
             this.sendAvailibleWarriors();
             this.client.on("addWarriorToQueue", this.addWarriorToQueue);
+            this.client.on("clickSlot", this.clickSlot)
             this.client.on("disconnect", this.playerDisconnect);
         }, 300);
     };
 
     playerDisconnect = () => {
         this.game.endGame();
+    };
+
+    clickSlot = (slotId: number) => {
+        this.game.earthquake(slotId, this.player)
     };
 
     addWarriorToQueue = (type: string) => {

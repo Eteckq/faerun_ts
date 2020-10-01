@@ -94,10 +94,10 @@ export default class Game {
         this.eventEmitter.emit('endGame');
     }
 
-    public winGame(winner: Player){
+    public winGame(winner: Player, looser: Player){
         this.state = "FINISH"
         clearInterval(this.interval)
-        this.eventEmitter.emit('winGame', winner.getPseudo());
+        this.eventEmitter.emit('winGame', winner.getPseudo(), looser.getPseudo());
 
         setTimeout(() => {
             this.eventEmitter.emit('endGame');
@@ -112,7 +112,7 @@ export default class Game {
         this.eventEmitter.emit('startGame');
         this.interval = setInterval(() => {
             this.nextTurn();
-        }, 2000);
+        }, 1500);
     }
 
     /**
@@ -131,7 +131,16 @@ export default class Game {
         //Give ressources
         this.addRessourcesToCastles(1);
 
+
         this.eventEmitter.emit('nextTurn');
+    }
+
+    public earthquake(slotId: number, player: Player){
+        if(player.getCastle().getRessources() >= 10){
+            player.getCastle().addRessources(-10)
+            this.slots[slotId].earthquake()
+            this.eventEmitter.emit('earthquake', slotId);
+        }
     }
 
     private tryToSummonWarriors() {
@@ -199,26 +208,15 @@ export default class Game {
     }
 
 
-    // Pour les combats, chaques guerriers attaque un guerrier adverse au hasard sur la case
+    // Pour les combats, chaques guerriers attaque le guerrier adverse le plus resistant
     private fight() {
-        this.attackCastleIfLeftSideIsInLastSlot()
-        this.attackCastleIfRightSideIsInLastSlot()
-
         for (const slot of this.slots) {
             if (slot.hasBothSideWarriors()) {
-
-                // Chaque équipe à une chance sur deux d'attaquer en premier
-                /* if(Math.round(Math.random())){
-                    this.leftSideAttackOnSlot(slot)
-                    this.rightSideAttackOnSlot(slot)
-                } else {
-                    this.rightSideAttackOnSlot(slot)
-                    this.leftSideAttackOnSlot(slot)
-                } */
-
                 this.attackStrongestOnSlot(slot)
             }
         }
+        this.attackCastleIfLeftSideIsInLastSlot()
+        this.attackCastleIfRightSideIsInLastSlot()
     }
 
     private attackStrongestOnSlot(slot: Slot){
@@ -258,11 +256,13 @@ export default class Game {
 
         if(!slot.hasBothSideWarriors() && slot.hasLeftSideWarriors()){
             let castle = this.players[1].getCastle()
+            castle.attack(slot.getStrongestLeftWarrior())
+            slot.removeDeadWarriors()
             for (const warrior of slot.getWarriors()) {
                 warrior.attack(castle)
             }
             if(castle.isDestroyed()){
-                this.winGame(this.players[0])
+                this.winGame(this.players[0], this.players[1])
             }
         }
 
@@ -274,37 +274,18 @@ export default class Game {
 
         if(!slot.hasBothSideWarriors() && slot.hasRightSideWarriors()){
             let castle = this.players[0].getCastle()
+            castle.attack(slot.getStrongestRightWarrior())
+            slot.removeDeadWarriors()
             for (const warrior of slot.getWarriors()) {
                 warrior.attack(castle)
             }
             if(castle.isDestroyed()){
-                this.winGame(this.players[1])
+                this.winGame(this.players[1], this.players[0])
             }
         }
     }
 
-    /* private rightSideAttackOnSlot(slot: Slot){
-        for (const warrior of slot.getRightSideWarriors()) {
-            if(!warrior.isDead()){
-                warrior.attack(slot.getRandomLeftWarrior())
-                if(slot.getRandomLeftWarrior() == null){
-                    console.log("ATTAQUER LE CHATEAU");
-                }
-            }
-        }
-    }
-
-    private leftSideAttackOnSlot(slot: Slot){
-        for (const warrior of slot.getLeftSideWarriors()) {
-            if(!warrior.isDead()){
-                warrior.attack(slot.getRandomRightWarrior())
-                if(slot.getRandomRightWarrior() == null){
-                    console.log("ATTAQUER LE CHATEAU");
-                }
-            }
-        }
-    } */
-
+    
     /**
      * Give ressources to castles
      * @param count Number of ressources

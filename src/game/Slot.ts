@@ -25,6 +25,13 @@ export default class Slot {
       return false
     }
 
+    public earthquake(){
+      for (const warrior of this.warriors) {
+        warrior.dealPercent(0.75)
+      }
+      this.removeDeadWarriors()
+    }
+
     public destroyWarrior(deadWarrior: Guerrier){
       this.warriors = this.warriors.filter(warrior => warrior.getHealth() !== deadWarrior.getHealth() && warrior.type === deadWarrior.type)
     }

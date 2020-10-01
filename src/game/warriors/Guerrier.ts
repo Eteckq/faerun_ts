@@ -51,6 +51,10 @@ export default abstract class Guerrier implements DamageableEntity{
         this.health -= (damages * (1-this.getResistance()))
     }
 
+    public dealPercent(percent: number){
+        this.health *= 1-percent
+    }
+
     protected getStrength(): number {
         return Guerrier.STRENGTH
     }

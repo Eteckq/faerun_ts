@@ -4,7 +4,7 @@ import Guerrier from "./warriors/Guerrier";
 import DamageableEntity from './DamageableEntity'
 
 export default class Castle implements DamageableEntity{ 
-
+    private static BASE_ATTACK = 50
     private static BASE_HEALTH = 1000
 
     private game: Game
@@ -25,6 +25,9 @@ export default class Castle implements DamageableEntity{
     constructor(game: Game, color: string){
         this.game = game
         this.color = color
+    }
+    public attack(target: DamageableEntity) {
+        target.dealDamages(Castle.BASE_ATTACK)
     }
 
     /**

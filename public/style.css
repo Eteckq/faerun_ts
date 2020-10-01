@@ -129,6 +129,11 @@ input[type="color"]::-webkit-color-swatch {
   display: flex;
   justify-content: flex-end;
   align-content: center;
+  cursor: pointer;
+}
+
+#slots .slot:hover {
+  background-color: rgb(255, 208, 208);
 }
 
 .warriorCardInfo {
@@ -255,4 +260,15 @@ progress::-webkit-progress-bar {
 
 #waitingForPlayerQueue {
   text-align: center;
+}
+
+#slotsContainer {
+  position: relative;
+}
+
+.smoke {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  transform: translate(-50%, -195px);
 }

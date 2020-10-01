@@ -28,12 +28,18 @@ controller.handleWinGame= (winner) => {
 controller.handleRessources = (count) => {
   view.setRessources(count)
 };
+controller.handleEarthquake = (slotId) => {
+  view.earthquake(slotId)
+}
 controller.handleQueue = (warriors) => {
   view.setQueue(warriors);
 };
 controller.handleSetSlots = (slots) => {
   view.setSlots(slots);
 };
+controller.handleClickSlot = (slotId) => {
+  model.emitClickSlot(slotId)
+}
 
 controller.train = (id) => {
   model.emitAddWarriorToQueue(id);

@@ -37,6 +37,7 @@ export default class GameSocket {
     this.game.eventEmitter.on('addPlayer', this.handleAddPlayerEvent)
     this.game.eventEmitter.on('sendCastles', this.handleSendCastlesEvent)
     this.game.eventEmitter.on('winGame', this.handleWinGameEvent)
+    this.game.eventEmitter.on("earthquake", this.handleEarthquake)
   }
 
   public endGame() {
@@ -52,13 +53,19 @@ export default class GameSocket {
     this.broadcastCastles()
   }
 
+  private handleEarthquake = (slotId: number) => {
+    this.broadcastSlots();
+    this.broadcastEarthquake(slotId)
+  }
+
   private handleStartGameEvent = () => {
     this.broadcaststartGame()
     
   }
 
-  private handleWinGameEvent= (winner: string) => {
+  private handleWinGameEvent= (winner: string, looser: string) => {
     this.broadcastWinGame(winner)
+    console.log(looser + " lost the game");
     
   }
 
@@ -124,6 +131,10 @@ export default class GameSocket {
     }
 
     this.io.emit("setSlots", sendableSlots)
+  }
+
+  public broadcastEarthquake(slotId: number){
+    this.io.emit("earthquake", slotId)
   }
 
   public broadcastSendRessources() {
