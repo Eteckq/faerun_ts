@@ -1,10 +1,8 @@
 # Faerun
 
-## Typescript au lieu de Java
+## Projet de cours
 
-J'ai développé ce projet en Typescript à la place du Java, car je n'ai actuellement aucun droit sur mon pc, et aucun IDE Java n'est installé (il n'y a pas non plus de SDK). Ce PC est temporairement prêté par ma boite, il sera très bientôt changé.
-
-J'avais déjà entièrement développé Faerun en Java en fin d'année dernière, mais je n'ai plus le projet à cause du reset des sessions.
+Adaptation du jeu Faerun
 
 ## Fonctionnalités
 
