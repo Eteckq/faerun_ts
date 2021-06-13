@@ -41,7 +41,7 @@ Cela permet d'avoir des tours plus rapides, et une stratégie moins aléatoire.
 
 ## Installation
 
-Une version est disponible sur ce site : https://faerun.herokuapp.com/
+Une version est disponible sur ce site : https://faerun.herokuapp.com/ (le site est hébérgé gratuitement sur Heroku, le lien met parfois du temps à répondre)
 
 Le projet utilise NodeJS, il faut donc avoir npm d'installé
 
